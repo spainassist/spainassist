@@ -33,8 +33,7 @@
     }
     nav.scrolled{background:rgba(31,58,95,0.97);border-bottom-color:rgba(255,255,255,0.08)}
     .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-    .nav-logo-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--secondary),#1a8abf);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:16px;font-weight:800;color:#fff}
-    .nav-logo-text{font-family:'Poppins',sans-serif;font-weight:700;font-size:17px;color:#fff;letter-spacing:0.5px}
+    .nav-logo-img{height:42px;width:auto;display:block;}
     .nav-links{display:flex;align-items:center;gap:28px}
     .nav-links a{color:rgba(255,255,255,0.82);text-decoration:none;font-size:15px;font-weight:600;transition:color 0.2s}
     .nav-links a:hover{color:#fff}
@@ -45,7 +44,7 @@
     .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
     .hero-bg{
       position:absolute;inset:0;
-      background-image:url('https://images.unsplash.com/photo-1559564484-a2d3a7c2bd0b?w=1800&q=80');
+      background-image:url('hero.jpg');
       background-size:cover;background-position:center 30%;
       transform:scale(1.05);
       animation:heroZoom 20s ease-in-out infinite alternate;
@@ -180,8 +179,7 @@
   <!-- NAV -->
   <nav id="nav">
     <a href="index.html" class="nav-logo">
-      <div class="nav-logo-icon">SA</div>
-      <span class="nav-logo-text">SPAINASSIST</span>
+      <img src="logo.png" alt="Move to Spain Assistance" class="nav-logo-img">
     </a>
     <div class="nav-links">
       <a href="nederlands.html" class="active">🇳🇱 Nederlands</a>
@@ -463,17 +461,28 @@
         </div>
         <div class="form-card">
           <h3>Vertel ons jouw situatie</h3>
-          <div class="form-grid" style="margin-top:18px">
-            <input type="text" placeholder="Naam">
-            <input type="email" placeholder="E-mailadres">
-            <input type="text" placeholder="Nationaliteit">
-            <select><option>Gewenste dienst</option><option>NIE</option><option>Bankrekening</option><option>Afspraken</option><option>VIP verhuisbegeleiding</option></select>
-            <textarea placeholder="Beschrijf kort jouw situatie"></textarea>
-          </div>
-          <div class="form-actions">
-            <a class="btn" href="https://wa.me/34672946687" target="_blank">Stuur via WhatsApp</a>
-            <a class="btn secondary" href="#">Formulier versturen</a>
-          </div>
+          <form id="contact-form" action="https://formspree.io/f/mdabjlpn" method="POST">
+            <input type="hidden" name="_language" value="nl">
+            <div class="form-grid" style="margin-top:18px">
+              <input type="text" name="name" placeholder="Naam" required>
+              <input type="email" name="email" placeholder="E-mailadres" required>
+              <input type="text" name="nationality" placeholder="Nationaliteit">
+              <select name="service">
+                <option value="">Gewenste dienst</option>
+                <option>NIE</option>
+                <option>Bankrekening</option>
+                <option>Afspraken</option>
+                <option>VIP verhuisbegeleiding</option>
+              </select>
+              <textarea name="message" placeholder="Beschrijf kort jouw situatie"></textarea>
+            </div>
+            <div class="form-actions">
+              <a class="btn" href="https://wa.me/34672946687" target="_blank">Stuur via WhatsApp</a>
+              <button type="submit" class="btn secondary" id="submit-btn">Formulier versturen</button>
+            </div>
+            <p id="form-success" style="display:none;margin-top:14px;color:#27ae60;font-weight:600">✓ Bericht verzonden! We reageren binnen 2 uur.</p>
+            <p id="form-error" style="display:none;margin-top:14px;color:#e74c3c;font-weight:600">Er is iets misgegaan. Probeer WhatsApp.</p>
+          </form>
         </div>
       </div>
     </div>
@@ -505,6 +514,38 @@
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
     });
+
+    const form = document.getElementById('contact-form');
+    if(form){
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        const btn = document.getElementById('submit-btn');
+        const success = document.getElementById('form-success');
+        const error = document.getElementById('form-error');
+        btn.textContent = 'Versturen...';
+        btn.disabled = true;
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if(res.ok){
+            success.style.display = 'block';
+            error.style.display = 'none';
+            form.reset();
+            btn.textContent = 'Verzonden ✓';
+          } else {
+            throw new Error();
+          }
+        } catch {
+          error.style.display = 'block';
+          success.style.display = 'none';
+          btn.textContent = 'Formulier versturen';
+          btn.disabled = false;
+        }
+      });
+    }
   </script>
 </body>
 </html>
