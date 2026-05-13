@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spain Assistance – NIE, Bank Account & Relocation Support</title>
+  <meta name="description" content="Professional assistance for foreigners moving to Spain. NIE, bank account, administrative procedures and personalised relocation support.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#1F3A5F;
+      --secondary:#3FA7D6;
+      --bg:#FFFFFF;
+      --alt:#F5F7FA;
+      --button:#FF8C42;
+      --text:#5c6b7c;
+      --line:#dbe4ee;
+      --shadow:0 12px 30px rgba(31,58,95,0.08);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--primary);font-family:'Open Sans',sans-serif;line-height:1.6;}
+
+    /* NAV */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:16px 40px;
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,0.12);
+      transition:background 0.3s,border-color 0.3s;
+    }
+    nav.scrolled{background:rgba(31,58,95,0.97);border-bottom-color:rgba(255,255,255,0.08)}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo-icon{
+      width:36px;height:36px;border-radius:10px;
+      background:linear-gradient(135deg,var(--secondary),#1a8abf);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Poppins',sans-serif;font-size:16px;font-weight:800;color:#fff;
+    }
+    .nav-logo-text{font-family:'Poppins',sans-serif;font-weight:700;font-size:17px;color:#fff;letter-spacing:0.5px}
+    .nav-links{display:flex;align-items:center;gap:28px}
+    .nav-links a{color:rgba(255,255,255,0.82);text-decoration:none;font-size:15px;font-weight:600;transition:color 0.2s}
+    .nav-links a:hover{color:#fff}
+    .nav-links a.active{color:var(--secondary)}
+    .nav-cta{
+      background:var(--button);color:#fff;padding:10px 20px;
+      border-radius:10px;font-weight:700;font-size:14px;
+      text-decoration:none;box-shadow:0 6px 18px rgba(255,140,66,0.35);
+      transition:transform 0.15s,box-shadow 0.15s;
+    }
+    .nav-cta:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(255,140,66,0.45)}
+
+    /* HERO */
+    .hero{
+      position:relative;min-height:100vh;
+      display:flex;align-items:center;
+      overflow:hidden;
+    }
+    .hero-bg{
+      position:absolute;inset:0;
+      background-image:url('https://images.unsplash.com/photo-1559564484-a2d3a7c2bd0b?w=1800&q=80');
+      background-size:cover;background-position:center 30%;
+      transform:scale(1.05);
+      animation:heroZoom 20s ease-in-out infinite alternate;
+    }
+    @keyframes heroZoom{from{transform:scale(1.05)}to{transform:scale(1.12)}}
+    .hero-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(15,28,50,0.88) 0%,rgba(20,50,80,0.72) 55%,rgba(10,40,70,0.45) 100%);
+    }
+    .hero-grain{
+      position:absolute;inset:0;opacity:0.04;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+    .hero-inner{
+      position:relative;z-index:2;
+      padding:140px 40px 100px;
+      max-width:1180px;margin:0 auto;width:100%;
+    }
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 16px;border-radius:999px;
+      background:rgba(63,167,214,0.18);
+      border:1px solid rgba(63,167,214,0.35);
+      color:var(--secondary);font-size:14px;font-weight:600;
+      margin-bottom:28px;
+      animation:fadeUp 0.7s ease both;
+    }
+    .hero-trust{
+      display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap;
+      animation:fadeUp 0.7s 0.1s ease both;
+    }
+    .hero-trust span{
+      display:flex;align-items:center;gap:7px;
+      font-size:14px;color:rgba(255,255,255,0.75);font-weight:600;
+    }
+    .hero-trust span::before{
+      content:'✓';background:var(--secondary);color:#fff;
+      width:20px;height:20px;border-radius:50%;
+      display:inline-flex;align-items:center;justify-content:center;
+      font-size:11px;flex-shrink:0;
+    }
+    .hero h1{
+      font-size:62px;line-height:1.06;color:#fff;
+      margin:0 0 22px;font-weight:800;max-width:760px;
+      animation:fadeUp 0.7s 0.2s ease both;
+    }
+    .hero h1 em{font-style:normal;color:var(--secondary)}
+    .hero-sub{
+      font-size:20px;color:rgba(255,255,255,0.8);
+      max-width:580px;margin-bottom:40px;line-height:1.65;
+      animation:fadeUp 0.7s 0.3s ease both;
+    }
+    .hero-actions{
+      display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+      animation:fadeUp 0.7s 0.4s ease both;
+    }
+    .hero-note{
+      font-size:13px;color:rgba(255,255,255,0.45);
+      margin-top:16px;animation:fadeUp 0.7s 0.5s ease both;
+    }
+    .hero-scroll{
+      position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+      display:flex;flex-direction:column;align-items:center;gap:6px;
+      color:rgba(255,255,255,0.4);font-size:12px;animation:bounce 2s infinite;
+    }
+    .hero-scroll::after{
+      content:'';width:1px;height:32px;
+      background:linear-gradient(to bottom,rgba(255,255,255,0.4),transparent);
+    }
+    @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+    /* TRUST STRIP */
+    .trust-strip{background:var(--primary);padding:24px 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+    .trust-strip-inner{display:flex;justify-content:center;gap:56px;flex-wrap:wrap;max-width:1180px;margin:0 auto;padding:0 20px}
+    .trust-item{text-align:center;color:#fff}
+    .trust-item strong{display:block;font-family:'Poppins',sans-serif;font-size:28px;color:var(--secondary)}
+    .trust-item span{font-size:13px;color:rgba(255,255,255,0.55)}
+
+    /* SHARED */
+    .container{max-width:1180px;margin:0 auto;padding:0 20px}
+    .section{padding:88px 0}
+    .section.alt{background:var(--alt)}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 14px;border-radius:999px;
+      background:rgba(63,167,214,0.12);color:var(--secondary);
+      font-size:14px;font-weight:600;margin-bottom:18px;
+    }
+    h1,h2,h3,h4{font-family:'Poppins',sans-serif;margin:0}
+    h2{font-size:42px;line-height:1.15;text-align:center;margin-bottom:14px}
+    h3{font-size:24px;line-height:1.25}
+    p{margin:0;color:var(--text)}
+    .subtitle{max-width:760px;margin:0 auto 54px;text-align:center;font-size:18px}
+
+    .btn{
+      display:inline-block;text-decoration:none;
+      background:var(--button);color:#fff;
+      padding:16px 28px;border-radius:12px;font-weight:700;
+      box-shadow:0 10px 24px rgba(255,140,66,0.28);
+      transition:transform 0.15s,box-shadow 0.15s;
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(255,140,66,0.36)}
+    .btn.secondary{background:#fff;color:var(--primary);border:1px solid var(--line);box-shadow:none}
+    .btn.secondary:hover{background:var(--alt);transform:translateY(-2px)}
+    .btn.ghost{background:rgba(255,255,255,0.12);color:#fff;border:1px solid rgba(255,255,255,0.25);box-shadow:none}
+    .btn.ghost:hover{background:rgba(255,255,255,0.2)}
+
+    /* ICON BADGE */
+    .icon-badge{
+      width:54px;height:54px;border-radius:16px;
+      background:linear-gradient(135deg,var(--primary),var(--secondary));
+      color:#fff;display:flex;align-items:center;justify-content:center;
+      flex:0 0 54px;box-shadow:0 12px 20px rgba(31,58,95,0.18);
+    }
+    .icon-badge svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+    /* AUDIENCE */
+    .audience-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;max-width:980px;margin:0 auto}
+    .audience-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow)}
+    .audience-card .top{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+    .check-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+    .check-list li{position:relative;padding-left:28px;color:var(--text)}
+    .check-list li::before{content:'✓';position:absolute;left:0;top:0;color:var(--secondary);font-weight:700}
+
+    /* STEPS */
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative}
+    .step{text-align:center;position:relative;padding:0 12px}
+    .step-number{
+      width:72px;height:72px;border-radius:999px;background:var(--secondary);
+      color:#fff;display:flex;align-items:center;justify-content:center;
+      margin:0 auto 18px;font-family:'Poppins',sans-serif;font-size:28px;
+      box-shadow:0 12px 24px rgba(63,167,214,0.22);
+    }
+
+    /* PRICING */
+    .pricing{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:stretch}
+    .price-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px 24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:14px}
+    .price-card.highlight{border:2px solid var(--secondary);transform:translateY(-6px)}
+    .price{font-family:'Poppins',sans-serif;font-size:34px;color:var(--secondary);margin:0}
+    .price-tag{display:inline-block;font-size:13px;color:var(--secondary);background:rgba(63,167,214,0.12);padding:6px 10px;border-radius:999px}
+    .price-card .btn{margin-top:auto;text-align:center}
+    .price-desc{font-size:14px;color:var(--text)}
+
+    /* FAQ */
+    .faq-wrap{max-width:860px;margin:0 auto;display:grid;gap:14px}
+    details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;box-shadow:var(--shadow)}
+    summary{cursor:pointer;font-family:'Poppins',sans-serif;font-size:18px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+    summary::after{content:'＋';color:var(--secondary);font-size:20px}
+    details[open] summary::after{content:'−'}
+    summary::-webkit-details-marker{display:none}
+    details p{margin-top:12px}
+
+    /* TESTIMONIALS */
+    .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:54px}
+    .testimonial{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:16px}
+    .testimonial-text{font-size:15px;color:var(--text);font-style:italic;line-height:1.65;flex:1}
+    .testimonial-author{display:flex;align-items:center;gap:12px}
+    .testimonial-avatar{
+      width:42px;height:42px;border-radius:50%;
+      background:linear-gradient(135deg,var(--primary),var(--secondary));
+      color:#fff;display:flex;align-items:center;justify-content:center;
+      font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;flex-shrink:0;
+    }
+    .testimonial-meta strong{display:block;font-size:14px;color:var(--primary)}
+    .testimonial-meta span{font-size:13px;color:var(--text)}
+    .testimonial-stars{color:var(--button);font-size:13px;letter-spacing:2px}
+
+    .reviews-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+    .review-panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow)}
+    .review-panel h3{margin-bottom:18px}
+    .stars-input{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:10px;margin:18px 0 28px}
+    .stars-input input{display:none}
+    .stars-input label{font-size:48px;line-height:1;color:#d8dee8;cursor:pointer;transition:0.2s}
+    .stars-input label:hover,.stars-input label:hover ~ label,.stars-input input:checked ~ label{color:var(--button)}
+    .score-box{display:flex;gap:18px;align-items:center;margin-bottom:26px;padding:18px;border-radius:16px;background:var(--alt)}
+    .score{font-family:'Poppins',sans-serif;font-size:58px;line-height:1;color:var(--secondary)}
+    .stars-static{color:var(--button);font-size:28px;letter-spacing:4px;margin-top:6px}
+    .rating-row{display:grid;grid-template-columns:54px 1fr 50px;gap:12px;align-items:center;margin-bottom:10px;color:var(--text)}
+    .bar{height:12px;background:#edf2f7;border-radius:999px;overflow:hidden}
+    .fill{height:100%;background:var(--button);border-radius:999px}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 0.9fr;gap:28px;align-items:start}
+    .contact-card,.form-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow)}
+    .contact-list{display:grid;gap:14px;margin-top:20px}
+    .contact-item{display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--alt);border-radius:14px}
+    .contact-item strong{display:block;color:var(--primary);margin-bottom:4px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    input,select,textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:14px 15px;font:inherit;color:var(--primary);background:#fff}
+    input:focus,select:focus,textarea:focus{outline:2px solid var(--secondary);outline-offset:1px}
+    textarea{min-height:140px;resize:vertical;grid-column:1 / -1}
+    .form-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+
+    /* CTA BANNER */
+    .cta-banner{
+      background:linear-gradient(135deg,var(--primary),#294f80);
+      color:#fff;border-radius:24px;padding:48px;
+      display:flex;align-items:center;justify-content:space-between;gap:20px;
+      box-shadow:var(--shadow);position:relative;overflow:hidden;
+    }
+    .cta-banner::before{
+      content:'';position:absolute;inset:0;
+      background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .cta-banner>*{position:relative}
+    .cta-banner p{color:rgba(255,255,255,0.82)}
+
+    /* FOOTER */
+    .footer{padding:32px 0 48px;font-size:14px;text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center}
+    .footer-links{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+    .footer-links a{color:var(--secondary);text-decoration:none;font-weight:600}
+    .footer-links a:hover{text-decoration:underline}
+
+    @media(max-width:1100px){.pricing{grid-template-columns:repeat(2,1fr)}.contact-grid,.reviews-grid{grid-template-columns:1fr}.testimonials-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:768px){
+      h2{font-size:30px}.hero h1{font-size:36px}
+      .steps,.audience-grid,.pricing,.form-grid,.testimonials-grid{grid-template-columns:1fr}
+      .section{padding:70px 0}.cta-banner{flex-direction:column;align-items:flex-start;padding:32px}
+      nav{padding:14px 20px}.hero-inner{padding:120px 20px 80px}
+      .trust-strip-inner{gap:28px}.price-card.highlight{transform:none}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">SA</div>
+      <span class="nav-logo-text">SPAINASSIST</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+      <a href="nederlands.html">🇳🇱 Nederlands</a>
+      <a href="https://wa.me/34672946687" target="_blank" class="nav-cta">WhatsApp →</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">🇪🇸 Professional relocation support · Spain</div>
+      <div class="hero-trust">
+        <span>8+ years experience</span>
+        <span>1,200+ clients helped</span>
+        <span>20+ nationalities served</span>
+      </div>
+      <h1>Your move to Spain,<br><em>sorted from day one.</em></h1>
+      <p class="hero-sub">NIE, bank account, appointments and paperwork — handled for you, step by step.</p>
+      <div class="hero-actions">
+        <a class="btn" href="https://wa.me/34672946687" target="_blank">Start on WhatsApp →</a>
+        <a class="btn ghost" href="#pricing">See pricing</a>
+      </div>
+      <p class="hero-note">Typical first response within 2 hours · No commitment required</p>
+    </div>
+    <div class="hero-scroll">scroll</div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="trust-strip-inner">
+      <div class="trust-item"><strong>1,247+</strong><span>Clients helped</span></div>
+      <div class="trust-item"><strong>4.8 ★</strong><span>Average rating</span></div>
+      <div class="trust-item"><strong>20+</strong><span>Nationalities served</span></div>
+      <div class="trust-item"><strong>8+</strong><span>Years experience</span></div>
+    </div>
+  </div>
+
+  <!-- WHO IS IT FOR -->
+  <section class="section">
+    <div class="container">
+      <div style="text-align:center"><div class="eyebrow">Who we help</div></div>
+      <h2>Who is Spain Assistance for?</h2>
+      <p class="subtitle">Whether you're relocating for work or buying property — we make the process clear, fast, and stress-free.</p>
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="top">
+            <div class="icon-badge">
+              <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-6h4v6"/></svg>
+            </div>
+            <h3>New residents</h3>
+          </div>
+          <ul class="check-list">
+            <li>Moving to Spain for work or family reasons</li>
+            <li>Need NIE, documents and clear guidance</li>
+            <li>Want to avoid costly mistakes and delays</li>
+          </ul>
+        </div>
+        <div class="audience-card">
+          <div class="top">
+            <div class="icon-badge">
+              <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>
+            </div>
+            <h3>Property buyers & international clients</h3>
+          </div>
+          <ul class="check-list">
+            <li>Need a bank account and administrative support</li>
+            <li>Paperwork ready before your property steps</li>
+            <li>One dedicated point of contact throughout</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section alt">
+    <div class="container">
+      <div style="text-align:center"><div class="eyebrow">Simple process</div></div>
+      <h2>How it works</h2>
+      <p class="subtitle">Three clear steps from first contact to guided completion of your procedures.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Contact us</h3>
+          <p>Tell us your situation, nationality and the service you need. We respond within hours.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>We analyse your case</h3>
+          <p>We identify the exact procedures, documents and next steps required for your situation.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>We guide you step by step</h3>
+          <p>You receive practical support throughout — with fast communication and no surprises.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <div style="text-align:center"><div class="eyebrow">Transparent pricing</div></div>
+      <h2>Services and pricing</h2>
+      <p class="subtitle">Flexible packages for different levels of support. Final pricing may vary depending on your case and urgency.</p>
+      <div class="pricing">
+        <div class="price-card">
+          <span class="price-tag">Basic</span>
+          <h3>Basic package</h3>
+          <div class="price">100€ – 150€</div>
+          <p class="price-desc">Know exactly what documents you need before your first appointment.</p>
+          <ul class="check-list">
+            <li>Appointment booking</li>
+            <li>Personalised document checklist</li>
+            <li>Expert advice on your situation</li>
+          </ul>
+          <a class="btn secondary" href="https://wa.me/34672946687" target="_blank">Get started →</a>
+        </div>
+        <div class="price-card highlight">
+          <span class="price-tag">Most requested</span>
+          <h3>Standard package</h3>
+          <div class="price">250€ – 350€</div>
+          <p class="price-desc">Full NIE management so you don't have to figure it out alone.</p>
+          <ul class="check-list">
+            <li>Complete NIE management</li>
+            <li>Full document preparation</li>
+            <li>Assistance during the process</li>
+          </ul>
+          <a class="btn" href="https://wa.me/34672946687" target="_blank">Choose Standard →</a>
+        </div>
+        <div class="price-card">
+          <span class="price-tag">Premium</span>
+          <h3>Premium package</h3>
+          <div class="price">500€ – 900€</div>
+          <p class="price-desc">NIE, banking and in-person support — ideal for property buyers.</p>
+          <ul class="check-list">
+            <li>NIE application</li>
+            <li>Bank account opening</li>
+            <li>Administrative appointments</li>
+            <li>In-person support</li>
+          </ul>
+          <a class="btn secondary" href="https://wa.me/34672946687" target="_blank">Go Premium →</a>
+        </div>
+        <div class="price-card">
+          <span class="price-tag">VIP</span>
+          <h3>VIP service</h3>
+          <div class="price">1,500€+</div>
+          <p class="price-desc">Full white-glove relocation — from airport pickup to complete paperwork.</p>
+          <ul class="check-list">
+            <li>Hotel booking</li>
+            <li>Airport pickup</li>
+            <li>Complete paperwork handling</li>
+            <li>Personalised relocation support</li>
+          </ul>
+          <a class="btn secondary" href="https://wa.me/34672946687" target="_blank">Request VIP service →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section alt">
+    <div class="container">
+      <div style="text-align:center"><div class="eyebrow">FAQ</div></div>
+      <h2>Frequently asked questions</h2>
+      <p class="subtitle">Clear answers to the most common questions before starting your process.</p>
+      <div class="faq-wrap">
+        <details><summary>How long does the NIE process take?</summary><p>It depends on appointment availability and your province. In many cases it takes from a few days to several weeks. We keep you updated at every stage so you always know where things stand.</p></details>
+        <details><summary>Do I need to be in Spain for the process?</summary><p>Some steps may require your physical presence. We explain exactly what applies to your case before you begin, so there are no surprises when you arrive.</p></details>
+        <details><summary>Can you help me open a bank account in Spain?</summary><p>Yes. We help you choose the right bank, review the required documents and guide you through the full process from start to finish.</p></details>
+        <details><summary>Do you work with all nationalities?</summary><p>Yes. We have experience working with clients from over 20 countries. Requirements vary by nationality and we tailor our guidance accordingly.</p></details>
+        <details><summary>How do I pay for the service?</summary><p>Payment details are confirmed once we have reviewed your case. We accept bank transfer and other common methods. There is no payment required before we assess your situation.</p></details>
+        <details><summary>How quickly will I get a response?</summary><p>We typically respond within 2 hours on business days. For urgent cases, WhatsApp is the fastest way to reach us.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section">
+    <div class="container">
+      <div style="text-align:center"><div class="eyebrow">Real clients</div></div>
+      <h2>What our clients say</h2>
+      <p class="subtitle">Over 1,200 people have trusted Spain Assistance with their move. Here is what some of them said.</p>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p class="testimonial-text">"I had no idea where to start with the NIE. Spain Assistance took care of everything and I had my appointment within a week. Incredibly professional."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MV</div>
+            <div class="testimonial-meta">
+              <strong>Marie V.</strong><span>Belgium · Standard package</span>
+              <div class="testimonial-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">"Bought a property in Málaga and needed NIE and a bank account fast. They handled both smoothly. One point of contact, no stress."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JH</div>
+            <div class="testimonial-meta">
+              <strong>James H.</strong><span>United Kingdom · Premium package</span>
+              <div class="testimonial-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">"Fast responses and clear explanations at every step. I felt confident throughout the entire process. Highly recommended."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AK</div>
+            <div class="testimonial-meta">
+              <strong>Anna K.</strong><span>Germany · Standard package</span>
+              <div class="testimonial-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-panel">
+          <h3>Leave your feedback</h3>
+          <form>
+            <div class="stars-input">
+              <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+              <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+              <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+              <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+              <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+            </div>
+            <p style="margin-bottom:12px">Tell us what helped you most or what we can improve.</p>
+            <textarea placeholder="Your feedback"></textarea>
+            <div class="form-actions"><a class="btn" href="#">Send feedback</a></div>
+          </form>
+        </div>
+        <div class="review-panel">
+          <div class="score-box">
+            <div class="score">4.8</div>
+            <div><h3>Average rating</h3><p>Based on 1,247 verified reviews</p><div class="stars-static">★ ★ ★ ★ ★</div></div>
+          </div>
+          <h3 style="margin-bottom:18px">Rating distribution</h3>
+          <div class="rating-row"><span>5 ★</span><div class="bar"><div class="fill" style="width:65%"></div></div><span>65%</span></div>
+          <div class="rating-row"><span>4 ★</span><div class="bar"><div class="fill" style="width:22%"></div></div><span>22%</span></div>
+          <div class="rating-row"><span>3 ★</span><div class="bar"><div class="fill" style="width:8%"></div></div><span>8%</span></div>
+          <div class="rating-row"><span>2 ★</span><div class="bar"><div class="fill" style="width:3%"></div></div><span>3%</span></div>
+          <div class="rating-row"><span>1 ★</span><div class="bar"><div class="fill" style="width:2%"></div></div><span>2%</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section alt" id="contact">
+    <div class="container">
+      <div style="text-align:center"><div class="eyebrow">Get in touch</div></div>
+      <h2>Contact Spain Assistance</h2>
+      <p class="subtitle">Share your situation and receive practical guidance. WhatsApp is the fastest way to reach us.</p>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Quick contact</h3>
+          <p style="margin-top:10px">Ideal for clients who want a fast answer and a clear next step.</p>
+          <div class="contact-list">
+            <div class="contact-item">
+              <div class="icon-badge"><svg viewBox="0 0 24 24"><path d="M20 11.5A8.5 8.5 0 0 1 7.4 19l-3.4 1 1.1-3.2A8.5 8.5 0 1 1 20 11.5Z"/><path d="M9.5 8.8c.2-.5.5-.5.8-.5h.6c.2 0 .5 0 .7.4l.7 1.6c.1.3.1.5-.1.8l-.5.7c-.1.2-.2.4 0 .6.3.6.9 1.3 1.7 1.9.3.2.5.2.7.1l.8-.4c.2-.1.5-.1.7 0l1.5.7c.4.2.5.4.4.7v.7c0 .3-.1.6-.5.8-.5.2-1.2.3-1.9.1-1.4-.4-2.8-1.3-4-2.5-1.1-1.1-2-2.4-2.4-3.8-.2-.7-.2-1.4 0-1.8Z"/></svg></div>
+              <div><strong>WhatsApp</strong><p>+34 672 946 687</p></div>
+            </div>
+            <div class="contact-item">
+              <div class="icon-badge"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></div>
+              <div><strong>Email</strong><p>spainassist26@gmail.com</p></div>
+            </div>
+            <div class="contact-item">
+              <div class="icon-badge"><svg viewBox="0 0 24 24"><path d="M12 21s7-4.4 7-11a7 7 0 1 0-14 0c0 6.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+              <div><strong>Services</strong><p>NIE, bank account, appointments, relocation support</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-card">
+          <h3>Tell us your situation</h3>
+          <div class="form-grid" style="margin-top:18px">
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <input type="text" placeholder="Nationality">
+            <select><option>Service needed</option><option>NIE</option><option>Bank account</option><option>Appointments</option><option>VIP relocation</option></select>
+            <textarea placeholder="Describe your situation briefly"></textarea>
+          </div>
+          <div class="form-actions">
+            <a class="btn" href="https://wa.me/34672946687" target="_blank">Send via WhatsApp</a>
+            <a class="btn secondary" href="#">Send form</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA + FOOTER -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="cta-banner">
+        <div>
+          <h3 style="color:#fff;font-size:28px;margin-bottom:8px">Ready to make your move to Spain simple?</h3>
+          <p>One message is all it takes. We'll tell you exactly what you need and guide you through every step.</p>
+        </div>
+        <a class="btn" href="https://wa.me/34672946687" target="_blank" style="white-space:nowrap">Start on WhatsApp →</a>
+      </div>
+      <div class="footer">
+        <div class="footer-links">
+          <a href="https://wa.me/34672946687" target="_blank">WhatsApp</a>
+          <a href="mailto:spainassist26@gmail.com">Email</a>
+          <a href="nederlands.html">🇳🇱 Nederlands</a>
+        </div>
+        <p style="color:var(--text)">© 2026 Spain Assistance · Professional support for foreigners moving to Spain</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+  </script>
+</body>
+</html>
