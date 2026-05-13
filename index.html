@@ -34,13 +34,7 @@
     }
     nav.scrolled{background:rgba(31,58,95,0.97);border-bottom-color:rgba(255,255,255,0.08)}
     .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-    .nav-logo-icon{
-      width:36px;height:36px;border-radius:10px;
-      background:linear-gradient(135deg,var(--secondary),#1a8abf);
-      display:flex;align-items:center;justify-content:center;
-      font-family:'Poppins',sans-serif;font-size:16px;font-weight:800;color:#fff;
-    }
-    .nav-logo-text{font-family:'Poppins',sans-serif;font-weight:700;font-size:17px;color:#fff;letter-spacing:0.5px}
+    .nav-logo-img{height:42px;width:auto;display:block;}
     .nav-links{display:flex;align-items:center;gap:28px}
     .nav-links a{color:rgba(255,255,255,0.82);text-decoration:none;font-size:15px;font-weight:600;transition:color 0.2s}
     .nav-links a:hover{color:#fff}
@@ -61,7 +55,7 @@
     }
     .hero-bg{
       position:absolute;inset:0;
-      background-image:url('https://images.unsplash.com/photo-1559564484-a2d3a7c2bd0b?w=1800&q=80');
+      background-image:url('hero.jpg');
       background-size:cover;background-position:center 30%;
       transform:scale(1.05);
       animation:heroZoom 20s ease-in-out infinite alternate;
@@ -291,8 +285,7 @@
   <!-- NAV -->
   <nav id="nav">
     <a href="index.html" class="nav-logo">
-      <div class="nav-logo-icon">SA</div>
-      <span class="nav-logo-text">SPAINASSIST</span>
+      <img src="logo.png" alt="Move to Spain Assistance" class="nav-logo-img">
     </a>
     <div class="nav-links">
       <a href="index.html" class="active">Home</a>
@@ -574,17 +567,27 @@
         </div>
         <div class="form-card">
           <h3>Tell us your situation</h3>
-          <div class="form-grid" style="margin-top:18px">
-            <input type="text" placeholder="Name">
-            <input type="email" placeholder="Email">
-            <input type="text" placeholder="Nationality">
-            <select><option>Service needed</option><option>NIE</option><option>Bank account</option><option>Appointments</option><option>VIP relocation</option></select>
-            <textarea placeholder="Describe your situation briefly"></textarea>
-          </div>
-          <div class="form-actions">
-            <a class="btn" href="https://wa.me/34672946687" target="_blank">Send via WhatsApp</a>
-            <a class="btn secondary" href="#">Send form</a>
-          </div>
+          <form id="contact-form" action="https://formspree.io/f/mdabjlpn" method="POST">
+            <div class="form-grid" style="margin-top:18px">
+              <input type="text" name="name" placeholder="Name" required>
+              <input type="email" name="email" placeholder="Email" required>
+              <input type="text" name="nationality" placeholder="Nationality">
+              <select name="service">
+                <option value="">Service needed</option>
+                <option>NIE</option>
+                <option>Bank account</option>
+                <option>Appointments</option>
+                <option>VIP relocation</option>
+              </select>
+              <textarea name="message" placeholder="Describe your situation briefly"></textarea>
+            </div>
+            <div class="form-actions">
+              <a class="btn" href="https://wa.me/34672946687" target="_blank">Send via WhatsApp</a>
+              <button type="submit" class="btn secondary" id="submit-btn">Send form</button>
+            </div>
+            <p id="form-success" style="display:none;margin-top:14px;color:#27ae60;font-weight:600">✓ Message sent! We'll get back to you within 2 hours.</p>
+            <p id="form-error" style="display:none;margin-top:14px;color:#e74c3c;font-weight:600">Something went wrong. Please try WhatsApp instead.</p>
+          </form>
         </div>
       </div>
     </div>
@@ -616,6 +619,39 @@
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
     });
+
+    // Formspree AJAX submit
+    const form = document.getElementById('contact-form');
+    if(form){
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        const btn = document.getElementById('submit-btn');
+        const success = document.getElementById('form-success');
+        const error = document.getElementById('form-error');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if(res.ok){
+            success.style.display = 'block';
+            error.style.display = 'none';
+            form.reset();
+            btn.textContent = 'Sent ✓';
+          } else {
+            throw new Error();
+          }
+        } catch {
+          error.style.display = 'block';
+          success.style.display = 'none';
+          btn.textContent = 'Send form';
+          btn.disabled = false;
+        }
+      });
+    }
   </script>
 </body>
 </html>
